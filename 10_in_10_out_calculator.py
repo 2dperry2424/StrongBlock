@@ -9,26 +9,16 @@ import math
 
 def prRed(skk):
     print("\033[91m {}\033[00m".format(skk))
-
-
 def prGreen(skk):
     print("\033[92m {}\033[00m".format(skk))
-
-
 def prYellow(skk):
     print("\033[93m {}\033[00m".format(skk))
-
-
 def prLightPurple(skk):
     print("\033[94m {}\033[00m".format(skk))
-
-
 def prCyan(skk):
     print("\033[96m {}\033[00m".format(skk))
 
-
 cwd = os.getcwd()
-
 
 def daterange(start_date, end_date):
     for n in range(int((end_date - start_date).days)):
