@@ -35,15 +35,15 @@ def daterange(start_date, end_date):
 ###############   USER INPUT SECTION   ########################
 ###############################################################
 
-token_worth = 145  # How much is the Token worth in USD?
+token_worth = 110  # How much is the Token worth in USD?
 node_count = 6  # How many nodes do you currently have?
-claim_gas_fee = 40  # When claiming rewards from each node, this is an estimate of gas paid for each node to claim.
+claim_gas_fee = 10  # When claiming rewards from each node, this is an estimate of gas paid for each node to claim.
 Ethereum_Node_Rewards = (
-    5  # Total Rewards you could claim as of right now on the website.
+    7.5  # Total Rewards you could claim as of right now on the website.
 )
 
-start_date = date(2022, 3, 22)  # Todays date
-end_date = date(2022, 12, 31)  # How long do  you want to project the data out to?
+start_date = date(2022, 3, 26)  # Todays date
+end_date = date(2023, 6, 30)  # How long do  you want to project the data out to?
 
 total_money_invested_at_this_point = (
     20000  ### How much money have you spent on the project already in USD
@@ -51,6 +51,9 @@ total_money_invested_at_this_point = (
 total_money_risk_already_cashed_out = (
     6500  ### How much money have you claimed and sold (risk off the table)
 )
+
+# True == buy another node first   , False == Cash out first
+recompound_flag = False
 
 
 ###############################################################
@@ -66,9 +69,6 @@ initial_investment = (
 reward_per_node_eth = 0.092  # rewards per day for each node
 cashed_out_tokens = 0
 realized_profit = 0
-
-# True == buy another node first
-recompound_flag = True
 
 
 prCyan(f"### Node to Start with: {node_count} ###")
@@ -90,15 +90,15 @@ for single_date in daterange(start_date, end_date):
         if recompound_flag:
             ## how many nodes to buy
             nodes_to_buy = math.floor(Ethereum_Node_Rewards / 10)
-            prGreen(f"### Purchasing another node ###")
-            prGreen(f"### Purchasing {nodes_to_buy} nodes ###\n")
+            prYellow(f"### Purchasing another node ###")
+            prYellow(f"### Purchasing {nodes_to_buy} nodes ###\n")
             Ethereum_Node_Rewards -= nodes_to_buy * 10
             node_count += nodes_to_buy
             recompound_flag = False
         else:
             gas_fees = claim_gas_fee * node_count
-            prYellow(f"### Pulling profits off the table ###")
-            prYellow(
+            prGreen(f"### Pulling profits off the table ###")
+            prGreen(
                 f"### Pulling profits off the table; claiming {round(Ethereum_Node_Rewards,2)} tokens ###\n"
             )
 
@@ -109,10 +109,10 @@ for single_date in daterange(start_date, end_date):
             recompound_flag = True
 
     if recompound_flag:
-        prGreen(
+        prYellow(
             f'{single_date.strftime("%Y-%m-%d")} Ethereum_Node_Rewards: {round(Ethereum_Node_Rewards,2)} --|-- NodeCount: {node_count} --|-- cashed_out_tokens: {round(cashed_out_tokens,2)} --|-- ROI_$: {round(realized_profit - initial_investment,2)}\n'
         )
     else:
-        prYellow(
+        prGreen(
             f'{single_date.strftime("%Y-%m-%d")} Ethereum_Node_Rewards: {round(Ethereum_Node_Rewards,2)} --|-- NodeCount: {node_count} --|-- cashed_out_tokens: {round(cashed_out_tokens,2)} --|-- ROI_$: {round(realized_profit - initial_investment,2)}\n'
         )
