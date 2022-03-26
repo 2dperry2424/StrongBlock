@@ -35,7 +35,7 @@ def daterange(start_date, end_date):
 ###############   USER INPUT SECTION   ########################
 ###############################################################
 
-token_worth = 145  # How much is the Token worth in USD?
+token_worth = 110  # How much is the Token worth in USD?
 node_count = 1  # How many nodes do you plan to buy when you start?
 claim_gas_fee = 40  # When claiming rewards from each node, this is an estimate of gas paid for each node to claim.
 Ethereum_Node_Rewards = (
@@ -82,15 +82,15 @@ for single_date in daterange(start_date, end_date):
         if recompound_flag:
             ## how many nodes to buy
             nodes_to_buy = math.floor(Ethereum_Node_Rewards / 10)
-            prGreen(f"### Purchasing another node ###")
-            prGreen(f"### Purchasing {nodes_to_buy} nodes ###\n")
+            prYellow(f"### Purchasing another node ###")
+            prYellow(f"### Purchasing {nodes_to_buy} nodes ###\n")
             Ethereum_Node_Rewards -= nodes_to_buy * 10
             node_count += nodes_to_buy
             recompound_flag = False
         else:
             gas_fees = claim_gas_fee * node_count
-            prYellow(f"### Pulling profits off the table ###")
-            prYellow(
+            prGreen(f"### Pulling profits off the table ###")
+            prGreen(
                 f"### Pulling profits off the table; claiming {round(Ethereum_Node_Rewards,2)} tokens ###\n"
             )
 
@@ -101,10 +101,10 @@ for single_date in daterange(start_date, end_date):
             recompound_flag = True
 
     if recompound_flag:
-        prGreen(
+        prYellow(
             f'{single_date.strftime("%Y-%m-%d")} Ethereum_Node_Rewards: {round(Ethereum_Node_Rewards,2)} --|-- NodeCount: {node_count} --|-- cashed_out_tokens: {round(cashed_out_tokens,2)} --|-- ROI_$: {round(realized_profit - initial_investment,2)}\n'
         )
     else:
-        prYellow(
+        prGreen(
             f'{single_date.strftime("%Y-%m-%d")} Ethereum_Node_Rewards: {round(Ethereum_Node_Rewards,2)} --|-- NodeCount: {node_count} --|-- cashed_out_tokens: {round(cashed_out_tokens,2)} --|-- ROI_$: {round(realized_profit - initial_investment,2)}\n'
         )
