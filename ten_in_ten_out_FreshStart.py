@@ -46,6 +46,10 @@ start_date = date(2022, 3, 22)  # Date you plan to invest into the project
 end_date = date(2022, 12, 31)  # How long you want to project data out.
 
 
+# True == buy another node first   , False == Cash out first
+recompound_flag = True
+
+
 ###############################################################
 ###############################################################
 ###############################################################
@@ -58,10 +62,6 @@ initial_investment = node_cost * node_count
 reward_per_node_eth = 0.092  # rewards per day for each node
 cashed_out_tokens = 0
 realized_profit = 0
-
-
-# True == buy another nude first
-recompound_flag = True
 
 
 prCyan(f"### Node to Start with: {node_count} ###")
