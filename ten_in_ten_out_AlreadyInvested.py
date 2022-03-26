@@ -110,9 +110,9 @@ for single_date in daterange(start_date, end_date):
 
     if recompound_flag:
         prGreen(
-            f'{single_date.strftime("%Y-%m-%d")} Reward_bank: {round(Ethereum_Node_Rewards,2)} --|-- NodeCount: {node_count} --|-- cashed_out_tokens: {round(cashed_out_tokens,2)} --|-- ROI_$: {round(realized_profit - initial_investment,2)}\n'
+            f'{single_date.strftime("%Y-%m-%d")} Ethereum_Node_Rewards: {round(Ethereum_Node_Rewards,2)} --|-- NodeCount: {node_count} --|-- cashed_out_tokens: {round(cashed_out_tokens,2)} --|-- ROI_$: {round(realized_profit - initial_investment,2)}\n'
         )
     else:
         prYellow(
-            f'{single_date.strftime("%Y-%m-%d")} Reward_bank: {round(Ethereum_Node_Rewards,2)} --|-- NodeCount: {node_count} --|-- cashed_out_tokens: {round(cashed_out_tokens,2)} --|-- ROI_$: {round(realized_profit - initial_investment,2)}\n'
+            f'{single_date.strftime("%Y-%m-%d")} Ethereum_Node_Rewards: {round(Ethereum_Node_Rewards,2)} --|-- NodeCount: {node_count} --|-- cashed_out_tokens: {round(cashed_out_tokens,2)} --|-- ROI_$: {round(realized_profit - initial_investment,2)}\n'
         )
